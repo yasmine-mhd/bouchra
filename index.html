@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Plateforme de Cours</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
+      background-color: #f4f1f594;
+      color: #474747;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: rgb(240, 232, 232);
+      margin: 0 15px;
+      text-decoration: none;
+    }
+
+    .section {
+      padding: 40px;
+    }
+
+    .hero {
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      transition: background-image 1s ease-in-out;
+      
+    }
+    .texte-animé {
+  overflow: hidden;
+  border-right: .15em solid orange;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .1em;
+  animation: typing 4s steps(30, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgb(232, 200, 140); }
+}
+
+.inscription-card {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #e9d1f5;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.inscription-card input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.inscription-card button {
+  width: 100%;
+  padding: 10px;
+  background-color: #83f39d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+    .course-card,
+.qcm-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+  border: 2px solid transparent;
+}
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.course-card, .qcm-card {
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  background-color: #f3a3db;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.course-card:hover,
+.qcm-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #cda6f5;
+  border: 2px solid #c1a5f3;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 10px #a06cf7;
+  }
+  100% {
+    box-shadow: 0 0 20px #c084fc;
+  }
+}
+
+button:active {
+  animation: flash 0.2s;
+}
+
+@keyframes flash {
+  0% { background-color: #60f082; }
+  50% { background-color: #69f389; }
+  100% { background-color: #5ff281; }
+}
+
+    .course-card, .qcm-card {
+      width: 250px;
+      height: 180px;
+      margin: 10px;
+      background-color: #ee9cd6;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      vertical-align: top;
+      padding: 15px;
+      white-space: nowrap;
+      overflow-x: auto;
+      text-align: center;
+    }
+
+    .qcm-container {
+      white-space: nowrap;
+      overflow-x: auto;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #83f39d;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:active {
+  animation: flash 0.2s ease-in-out;
+}
+
+@keyframes flash {
+  0% {
+    background-color: #65f386;
+  }
+  50% {
+    background-color: #68fb8b;
+  }
+  100% {
+    background-color: #65f085;
+  }
+}
+
+    .video-links a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px;
+      background-color: #98a3e8;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #333;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+
+.video-links a:hover {
+  background-color: #4a90e2; /* لون الإضاءة الزرقاء */
+  box-shadow: 0 0 15px rgba(74, 144, 226, 0.6); /* توهج أزرق حول الرابط */
+}
+    .merci-text {
+      font-style: italic;
+      font-size: 1.5em;
+      color: #222;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#accueil">Accueil</a>
+      <a href="#inscription">Inscription</a>
+      <a href="#apropos">À propos</a>
+      <a href="#cours">Cours</a>
+      <a href="#calendrier">Calendrier</a>
+      <a href="#video">Vidéo</a>
+      <a href="#qcm">QCM</a>
+      <a href="#merci">Merci</a>
+      <a href="#feedback">Feedback</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="accueil">
+    <div class="inscription">
+      <h1 class="texte-animé">Bienvenue à notre plateforme</h1>
+      <p>Inscrivez-vous pour accéder aux cours</p>
+    </div>
+  </section>
+
+  <section class="section" id="inscription">
+    <div class="inscription-card">
+      <h2>Inscription</h2>
+      <form onsubmit="envoyerFormulaire(event)">
+        <input type="text" id="nom" placeholder="Votre nom" required><br><br>
+        <input type="email" id="email" placeholder="Votre email" required><br><br>
+        <button type="submit">S'inscrire</button>
+      </form>
+      <p id="confirmation"></p>
+    </div>
+  </section>
+
+  <section class="section" id="apropos">
+    <h2>À propos</h2>
+    <p>Notre mission est de vous fournir des cours de qualité.</p>
+  </section>
+
+  <section class="section" id="cours">
+    <h2>Nos Cours</h2>
+    <div class="cards-grid">
+      <div class="course-card" style="background-color: #cae8fa;">
+        <h3>HTML CSS</h3>
+        <p>Prix : 29€</p>
+        <button onclick="acheterEtAfficher('livre html.html', 'cours-html-css')">Acheter</button>
+      </div>
+      <div class="course-card" style="background-color: #c1e1f5;">
+        <h3>Python</h3>
+        <p>Prix : 39€</p>
+        <button onclick="acheterEtAfficher('livre pythone.html', 'cours-python')">Acheter</button>
+      </div>
+      <div class="course-card" style="background-color: #c1def6;">
+        <h3>Data SQL</h3>
+        <p>Prix : 39€</p>
+        <button onclick="acheterEtAfficher('livre sql.html', 'cours-sql')">Acheter</button>
+      </div>
+      <div class="course-card" style="background-color: #ceebfc;">
+        <h3>C</h3>
+        <p>Prix : 39€</p>
+        <button onclick="acheterEtAfficher('livre c.html')">Acheter</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="calendrier">
+    <h2>Calendrier</h2>
+    <table style="margin: 0 auto; border-collapse: collapse; width: 80%;">
+      <thead>
+        <tr style="background-color: #f2f2f2;">
+          <th style="padding: 10px; border: 1px solid #ddd;">Date</th>
+          <th style="padding: 10px; border: 1px solid #ddd;">Cours</th>
+          <th style="padding: 10px; border: 1px solid #ddd;">Heure</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 10px; border: 1px solid #ddd;">10 mai 2025</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">JavaScript</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">14:00 - 16:00</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; border: 1px solid #ddd;">12 mai 2025</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">Python</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">10:00 - 12:00</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" id="video-links">
+    <h2>Vidéos</h2>
+    <div class="video-links">
+      <a href="video css.html" target="_blank">Vidéo: css</a>
+      <a href="video c.html" target="_blank">Vidéo: c</a>
+      <a href="video sql.html" target="_blank">Vidéo: data sql</a>
+      <a href="video pythone.html" target="_blank">Vidéo: Python</a>
+    </div>
+  </section>
+
+  <section class="section" id="qcm">
+    <h2>QCM</h2>
+    <div class="qcm-container">
+      <div class="qcm-card" style="background-color: #fce4ec;">
+        <h3>QCM data sql</h3>
+        <p>Prix : 9€</p>
+        <button onclick="acheterEtAfficher('data sql.html')">Acheter</button>
+      </div>
+      <div class="qcm-card" style="background-color: #fce4ec;">
+        <h3>QCM HTML</h3>
+        <p>Prix : 9€</p>
+        <button onclick="acheterEtAfficher('css.html')">Acheter</button>
+      </div>
+      <div class="qcm-card" style="background-color: #fce4ec;">
+        <h3>qcm-c</h3>
+        <p>Prix : 12€</p>
+        <button onclick="acheterEtAfficher('c.html')">Acheter</button>
+      </div>
+      <div class="qcm-card" style="background-color: #fce4ec;">
+        <h3>QCM Python</h3>
+        <p>Prix : 12€</p>
+        <button onclick="acheterEtAfficher('pythone.html')">Acheter</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="merci">
+    <p class="merci-text">Merci pour votre visite et votre confiance !</p>
+  </section>
+
+  <section class="section" id="contact" style="background-color: #f9f9f9;">
+    <h2>Contact</h2>
+    <p>Email : <a href="mailto:contact@coursenligne.com">contact@coursenligne.com</a></p>
+    <p>Téléphone : +213 6 99 88 77 66</p>
+  </section>
+
+  <section class="section" id="feedback" style="background-color: #f1f1f1; padding: 40px;">
+    <h2>Votre avis compte</h2>
+    <p>Nous serions ravis de connaître votre opinion sur notre site !</p>
+    <form id="feedback-form" onsubmit="submitFeedback(event)">
+      <textarea id="feedback-text" placeholder="Écrivez votre avis ici..." rows="4" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;"></textarea><br><br>
+      <button type="submit" style="padding: 10px 20px; background-color: #83f39d; color: white; border: none; border-radius: 4px; cursor: pointer;">Envoyer votre avis</button>
+    </form>
+    <p id="feedback-confirmation" style="margin-top: 15px; color: #28a745;"></p>
+  </section>
+
+  <script>
+    // Changement dynamique d'image d'arrière-plan
+    const images = [
+      'i6.jpg',
+      'i1.jpg',
+      'i5.jpg',
+      'i3.jpg',
+      'i4.jpg',
+  
+    ];
+
+    let currentImageIndex = 0;
+    const heroSection = document.querySelector('.hero');
+
+    function changerImage() {
+      heroSection.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+    }
+
+    changerImage(); // initial
+    setInterval(changerImage, 5000); // toutes les 5 secondes
+
+    function acheterEtAfficher(url) {
+      alert('Achat réussi ! Vous allez être redirigé vers le contenu.');
+      setTimeout(() => {
+        window.location.href = url;
+      }, 3000);
+    }
+
+    function envoyerFormulaire(event) {
+      event.preventDefault();
+      const nom = document.getElementById("nom").value;
+      const email = document.getElementById("email").value;
+      document.getElementById("confirmation").textContent = `Merci ${nom}, vous êtes inscrit avec l'email ${email}.`;
+    }
+
+    function submitFeedback(event) {
+      event.preventDefault();
+      const feedbackText = document.getElementById("feedback-text").value;
+      if (feedbackText.trim() === "") {
+        alert("Veuillez écrire un avis avant d'envoyer.");
+        return;
+      }
+      document.getElementById("feedback-confirmation").textContent =
+        "Merci pour votre avis ! Nous l'apprécions beaucoup.";
+      document.getElementById("feedback-form").reset();
+    }
+  </script>
+</body>
+</html>
